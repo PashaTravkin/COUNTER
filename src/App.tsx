@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import './App.css';
-import {IncreaseResetPropsType} from "./IncreaseResetPropsType/IncreaseResetPropsType";
+import {IncreaseReset} from "./IncreaseReset/IncreaseReset";
 
 
 function App() {
@@ -15,9 +15,8 @@ function App() {
                     <div className={'changingNumber'}><span className={value == 5 ? 'fiveRed' : ''}>{value}</span></div>
                 </div>
                 <div className={'buttons'}>
-                    <IncreaseResetPropsType value={value} setValue={setValue} title={'inc'}/>
-                    <IncreaseResetPropsType value={value} setValue={setValue} title={'reset'}/>
-                    {/*<Reset value={value} setValue={setValue} title={'reset'}/>*/}
+                    <IncreaseReset value={value} setValue={setValue} title={'inc'}/>
+                    <IncreaseReset value={value} setValue={setValue} title={'reset'}/>
                 </div>
             </div>
         </div>
