@@ -5,7 +5,7 @@
     height: 200px;
     margin: 100px 0 0 33%;
     padding: 30px;
-    border: 3px solid #c4c4ec;
+    border: 3px solid #5ccdef;
     border-radius: 10px;
     background: #646b68;
 }
@@ -30,7 +30,7 @@
     flex-wrap: nowrap;
     justify-content: space-between;
     margin-top: 20px;
-    border: 1px solid cadetblue;
+    border: 3px solid #5ccdef;
     border-radius: 5px;
     padding: 20px;
 }
@@ -42,6 +42,7 @@
     font-size: 30px;
     background: #5ccdef;
     border-radius: 20px;
+    border:1px solid #5ccdef;
     height: 50px;
     width: 120px;
     padding-top: 5px;
