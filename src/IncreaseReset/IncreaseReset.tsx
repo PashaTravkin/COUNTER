@@ -13,11 +13,11 @@ export const IncreaseReset = (props: IncreaseReset) => {
         props.setValue(0)
     }
     return (
-        <>
+        <div>
             {props.title === 'inc' &&
                 <button disabled={props.value == 5} onClick={increase} className={'button'}>{props.title}</button>}
             {props.title === 'reset' &&
                 <button disabled={props.value == 0} onClick={reset} className={'button'}>{props.title}</button>}
-        </>
+        </div>
     )
 }
