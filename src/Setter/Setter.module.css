@@ -1,0 +1,47 @@
+.counterWrapper {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    height: 200px;
+    margin: 100px 0 0 0;
+    padding: 30px;
+    border: 3px solid #5ccdef;
+    border-radius: 10px;
+    background: #646b68;
+}
+
+.windowChangingNumber {
+    background: #5ccdef;
+    border-radius: 10px;
+    width: 100%;
+    height: 60%;
+
+}
+
+.changingNumber {
+    font-size: 30px;
+    font-weight: bold;
+    padding-left: 20px;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+
+    margin-top: 20px;
+    border: 3px solid #5ccdef;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.fiveRed{
+    color: red;
+}
+
+.settings{
+    display: flex;
+    justify-content: center;
+}
+
