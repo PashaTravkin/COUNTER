@@ -3,48 +3,88 @@ import {ChangeEvent, useEffect, useState} from "react";
 import {Button} from "../Button/Button";
 
 type SetterPropsType = {
-    valueMax: number
-    valueStartCounter: number
-    setValueMax: (valueMax: number) => void
+
     setValueMaxCounter: (setValueMaxCounter: number) => void
+    valueStartCounter: number
+    valueMaxCounter:number
     setValueStartCounter: (startValue: number) => void
     setValue: (value: number) => void
+    disabledSetterButton:boolean
+    setDisabledSetterButton:(disabledSetterButton:boolean)=>void
+    setCounterValue:(counterValue:boolean)=>void
 }
 
 function Setter(props: SetterPropsType) {
 
-    let [valueSetterMax, setValueSetterMax] = useState(props.valueMax)
-    let [valueStart, setValueStart] = useState(props.valueStartCounter)
+    // let [start, setStart]=useState(props.valueStartCounter)
+    // let [max, setMax]=useState(props.valueMaxCounter)
 
     useEffect(() => {
         let holdValue = localStorage.getItem('setElementMax')
         if (holdValue) {
             let newHoldValue = JSON.parse(holdValue)
-            props.setValueMax(newHoldValue)
             props.setValueMaxCounter(newHoldValue)
         }
     }, [])
 
     useEffect(() => {
-        localStorage.setItem('setElementMax', JSON.stringify(props.valueMax))
-    }, [props.valueMax])
+        localStorage.setItem('setElementMax', JSON.stringify(props.valueMaxCounter))
+    }, [props.valueMaxCounter])
 
-       const onChangeHandlerMax = (event: ChangeEvent<HTMLInputElement>) => {
+    useEffect(() => {
+        let holdValue = localStorage.getItem('setElementStart')
+        if (holdValue) {
+            let newHoldValue = JSON.parse(holdValue)
+            props.setValueStartCounter(newHoldValue)
+        }
+    }, [])
+
+    useEffect(() => {
+        localStorage.setItem('setElementStart', JSON.stringify(props.valueStartCounter))
+    }, [props.valueStartCounter])
+
+    useEffect(() => {
+        let holdValue = localStorage.getItem('setElementDisableButton')
+        if (holdValue) {
+            let newHoldValue = JSON.parse(holdValue)
+            props.setDisabledSetterButton(newHoldValue)
+        }
+    }, [])
+
+    useEffect(() => {
+        localStorage.setItem('setElementDisableButton', JSON.stringify(props.disabledSetterButton))
+    }, [props.disabledSetterButton])
+
+
+
+let checkingValues = ()=>{
+    if(props.valueMaxCounter<=props.valueStartCounter || props.valueMaxCounter<=0 ||props.valueStartCounter<=0){
+        props.setCounterValue(false)
+        props.setDisabledSetterButton(true)
+    }
+    else { props.setCounterValue(true)
+        props.setDisabledSetterButton(false)}
+}
+
+    const onChangeHandlerMax = (event: ChangeEvent<HTMLInputElement>) => {
         const number = event.currentTarget.value
-        number && props.setValueMax(Number(number))
-        setValueSetterMax(Number(number))
+        number && props.setValueMaxCounter(Number(number))
+        props.setDisabledSetterButton(false)
+        checkingValues()
     }
 
     const onChangeHandlerStart = (event: ChangeEvent<HTMLInputElement>) => {
         const number = event.currentTarget.value
         number && props.setValueStartCounter(Number(number))
-        setValueStart(Number(number))
+        props.setDisabledSetterButton(false)
+        checkingValues()
     }
 
     let onclickHandler = () => {
-        props.setValueMaxCounter(props.valueMax)
-        props.setValue(valueStart)
+        props.setValueMaxCounter(props.valueMaxCounter)
+        props.setValue(props.valueStartCounter)
         props.setValueStartCounter(props.valueStartCounter)
+        props.setDisabledSetterButton(true)
     }
 
     return (
@@ -53,13 +93,13 @@ function Setter(props: SetterPropsType) {
                 <div className={s.windowChangingNumber}>
                     <div className={s.changingNumber}>
                         <span>max value: </span> <input type={'number'} onChange={onChangeHandlerMax}
-                                                        value={props.valueMax}/>
+                                                        value={props.valueMaxCounter}/>
                         <span>start value: </span> <input type={'number'} onChange={onChangeHandlerStart}
                                                           value={props.valueStartCounter}/>
                     </div>
                 </div>
                 <div className={s.buttons}>
-                    <Button onClick={onclickHandler} title={'set'}/>
+                    <Button disabled={props.disabledSetterButton} onClick={onclickHandler} title={'set'}/>
                 </div>
             </div>
         </div>

@@ -5,8 +5,8 @@ import s from "./IncreaseReset.module.css";
 export type IncreaseReset = {
     setValue: (value: number) => void
     value: number
-    valueMaxCounter:number
-    startValue:number
+    valueMaxCounter: number
+    startValue: number
 }
 export const IncreaseReset = (props: IncreaseReset) => {
     let increase = () => {

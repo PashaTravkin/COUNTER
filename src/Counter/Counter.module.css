@@ -19,27 +19,23 @@
 }
 
 .changingNumber {
-    margin-left: 45%;
+    display: flex;
+    justify-content: center;
     font-size: 70px;
     font-weight: bold;
 }
 
-/*.buttons {*/
-/*    display: flex;*/
-/*    flex-direction: row;*/
-/*    flex-wrap: nowrap;*/
-/*    justify-content: space-between;*/
-/*    margin-top: 20px;*/
-/*    border: 3px solid #5ccdef;*/
-/*    border-radius: 5px;*/
-/*    padding: 20px;*/
-/*}*/
-
-.fiveRed{
+.red {
     color: red;
 }
 
-.settings{
+.redError {
+    color: red;
+    font-size: 40px;
+    margin-top: 10px;
+}
+
+.settings {
     display: flex;
     justify-content: center;
 }
