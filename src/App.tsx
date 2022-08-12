@@ -10,29 +10,41 @@ function App() {
     let [valueStartCounter, setValueStartCounter] = useState(0)// это для хранения стартового значения счетчика
     let [valueMaxCounter, setValueMaxCounter] = useState(0)// это для хранения максимального значения для установки счетчика
     let [disabledSetterButton, setDisabledSetterButton] = useState(true)
+    let [disabledCounterButton, setDisabledCounterButton] = useState(true)
+
     let [counterValue, setCounterValue] = useState(true)
+    let [errorTitle, setErrorTitle] = useState('Incorrect value!')
     return (
         <div className="App">
-            <Setter
-                setValue={setValue}
-                valueStartCounter={valueStartCounter}
+            <div className="setter">
+                <Setter
+                    setValue={setValue}
+                    valueStartCounter={valueStartCounter}
 
-                setValueStartCounter={setValueStartCounter}
+                    setValueStartCounter={setValueStartCounter}
 
-                valueMaxCounter={valueMaxCounter}
-                setValueMaxCounter={setValueMaxCounter}
+                    valueMaxCounter={valueMaxCounter}
+                    setValueMaxCounter={setValueMaxCounter}
 
-                disabledSetterButton={disabledSetterButton}
-                setDisabledSetterButton={setDisabledSetterButton}
+                    disabledSetterButton={disabledSetterButton}
+                    setDisabledSetterButton={setDisabledSetterButton}
 
-                setCounterValue={setCounterValue}/>
+                    setCounterValue={setCounterValue}
+
+                    setErrorTitle={setErrorTitle}
+
+                    setDisabledCounterButton={setDisabledCounterButton}/>
+            </div >
 
             <Counter value={value}
                      setValue={setValue}
                      valueMaxCounter={valueMaxCounter}
                      startValue={valueStartCounter}
                      counterValue={counterValue}
-                     setCounterValue={setCounterValue}/>
+                     setCounterValue={setCounterValue}
+                     errorTitle={errorTitle}
+                     disabledCounterButton={disabledCounterButton}
+            />
         </div>
     )
 }

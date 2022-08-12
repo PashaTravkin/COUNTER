@@ -29,6 +29,12 @@
     color: red;
 }
 
+.green{
+    margin: 10px;
+    color: green;
+    font-size: 44px;
+}
+
 .redError {
     color: red;
     font-size: 40px;

@@ -7,6 +7,7 @@ export type IncreaseReset = {
     value: number
     valueMaxCounter: number
     startValue: number
+    disabledCounterButton:boolean
 }
 export const IncreaseReset = (props: IncreaseReset) => {
     let increase = () => {
@@ -17,8 +18,8 @@ export const IncreaseReset = (props: IncreaseReset) => {
     }
     return (
         <div className={s.buttons}>
-            <Button title={'inc'} onClick={increase} disabled={props.value == props.valueMaxCounter}/>
-            <Button title={'rest'} onClick={reset} disabled={props.value == props.startValue}/>
+            <Button title={'inc'} onClick={increase} disabled={props.value == props.valueMaxCounter||props.disabledCounterButton}/>
+            <Button title={'rest'} onClick={reset} disabled={props.value == props.startValue||props.disabledCounterButton}/>
         </div>
     )
 }

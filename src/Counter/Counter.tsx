@@ -9,11 +9,11 @@ type CounterPropsType = {
     startValue: number
     counterValue: boolean
     setCounterValue: (counterValue: boolean) => void
+    errorTitle: string
+    disabledCounterButton:boolean
 }
 
 function Counter(props: CounterPropsType) {
-
-    let [errorTitle, setErrorTitle] = useState('Incorrect value!')
 
     useEffect(() => {
         let holdValue = localStorage.getItem('setElement')
@@ -47,13 +47,15 @@ function Counter(props: CounterPropsType) {
                     <div className={s.changingNumber}>
                         {props.counterValue ?
                             <span className={props.value === props.valueMaxCounter ? s.red : ''}>{props.value}</span> :
-                            <span className={s.redError}>{errorTitle}</span>}
+                            <span className={props.errorTitle==='Incorrect value!'? s.redError:s.green}>{props.errorTitle}</span>}
                     </div>
                 </div>
                 <div>
-                    <IncreaseReset value={props.value} setValue={props.setValue}
+                    <IncreaseReset value={props.value}
+                                   setValue={props.setValue}
                                    valueMaxCounter={props.valueMaxCounter}
-                                   startValue={props.startValue}/>
+                                   startValue={props.startValue}
+                                   disabledCounterButton={props.disabledCounterButton}/>
                 </div>
             </div>
         </div>

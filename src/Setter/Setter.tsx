@@ -1,5 +1,5 @@
 import s from './Setter.module.css';
-import {ChangeEvent, useEffect, useState} from "react";
+import {ChangeEvent, useEffect} from "react";
 import {Button} from "../Button/Button";
 
 type SetterPropsType = {
@@ -12,6 +12,8 @@ type SetterPropsType = {
     disabledSetterButton:boolean
     setDisabledSetterButton:(disabledSetterButton:boolean)=>void
     setCounterValue:(counterValue:boolean)=>void
+    setErrorTitle:(errorTitle:string)=>void
+    setDisabledCounterButton:(value:boolean)=>void
 }
 
 function Setter(props: SetterPropsType) {
@@ -60,9 +62,12 @@ function Setter(props: SetterPropsType) {
 let checkingValues = ()=>{
     if(props.valueMaxCounter<=props.valueStartCounter || props.valueMaxCounter<=0 ||props.valueStartCounter<=0){
         props.setCounterValue(false)
+        props.setErrorTitle('Incorrect value!')
         props.setDisabledSetterButton(true)
     }
-    else { props.setCounterValue(true)
+    else {
+        // props.setCounterValue(true)
+        props.setErrorTitle('Enter your value!')
         props.setDisabledSetterButton(false)}
 }
 
@@ -70,6 +75,8 @@ let checkingValues = ()=>{
         const number = event.currentTarget.value
         number && props.setValueMaxCounter(Number(number))
         props.setDisabledSetterButton(false)
+        props.setCounterValue(false)
+        props.setDisabledCounterButton(true)
         checkingValues()
     }
 
@@ -77,6 +84,8 @@ let checkingValues = ()=>{
         const number = event.currentTarget.value
         number && props.setValueStartCounter(Number(number))
         props.setDisabledSetterButton(false)
+        props.setCounterValue(false)
+        props.setDisabledCounterButton(true)
         checkingValues()
     }
 
@@ -85,6 +94,8 @@ let checkingValues = ()=>{
         props.setValue(props.valueStartCounter)
         props.setValueStartCounter(props.valueStartCounter)
         props.setDisabledSetterButton(true)
+        props.setCounterValue(true)
+        props.setDisabledCounterButton(false)
     }
 
     return (
