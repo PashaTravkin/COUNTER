@@ -1,25 +1,22 @@
 import s from './Setter.module.css';
-import {ChangeEvent, useEffect} from "react";
+import {ChangeEvent, useEffect, useState} from "react";
 import {Button} from "../Button/Button";
 
 type SetterPropsType = {
 
     setValueMaxCounter: (setValueMaxCounter: number) => void
     valueStartCounter: number
-    valueMaxCounter:number
+    valueMaxCounter: number
     setValueStartCounter: (startValue: number) => void
     setValue: (value: number) => void
-    disabledSetterButton:boolean
-    setDisabledSetterButton:(disabledSetterButton:boolean)=>void
-    setCounterValue:(counterValue:boolean)=>void
-    setErrorTitle:(errorTitle:string)=>void
-    setDisabledCounterButton:(value:boolean)=>void
+    disabledSetterButton: boolean
+    setDisabledSetterButton: (disabledSetterButton: boolean) => void
+    setCounterValue: (counterValue: boolean) => void
+    setErrorTitle: (errorTitle: string) => void
+    setDisabledCounterButton: (value: boolean) => void
 }
 
 function Setter(props: SetterPropsType) {
-
-    // let [start, setStart]=useState(props.valueStartCounter)
-    // let [max, setMax]=useState(props.valueMaxCounter)
 
     useEffect(() => {
         let holdValue = localStorage.getItem('setElementMax')
@@ -57,36 +54,49 @@ function Setter(props: SetterPropsType) {
         localStorage.setItem('setElementDisableButton', JSON.stringify(props.disabledSetterButton))
     }, [props.disabledSetterButton])
 
-
-
-let checkingValues = ()=>{
-    if(props.valueMaxCounter<=props.valueStartCounter || props.valueMaxCounter<=0 ||props.valueStartCounter<=0){
+    let ifForAllCheckingValue = ()=>{
         props.setCounterValue(false)
         props.setErrorTitle('Incorrect value!')
         props.setDisabledSetterButton(true)
     }
-    else {
-        // props.setCounterValue(true)
+
+    let elseForAllCheckingValue =()=>{
         props.setErrorTitle('Enter your value!')
-        props.setDisabledSetterButton(false)}
-}
+        props.setDisabledSetterButton(false)
+    }
+
+    let checkingValuesForMax = (numberMax:number) => {
+        if (numberMax <= props.valueStartCounter || numberMax <= 0) {
+            ifForAllCheckingValue()
+        } else {
+            elseForAllCheckingValue()
+        }
+    }
+
+    let checkingValuesForStart = (numberStart:number) => {
+        if (props.valueMaxCounter <= numberStart || numberStart <= 0) {
+            ifForAllCheckingValue()
+        } else {
+            elseForAllCheckingValue()
+        }
+    }
 
     const onChangeHandlerMax = (event: ChangeEvent<HTMLInputElement>) => {
-        const number = event.currentTarget.value
-        number && props.setValueMaxCounter(Number(number))
+        const numberMax = event.currentTarget.value
+        numberMax && props.setValueMaxCounter(Number(numberMax))
         props.setDisabledSetterButton(false)
         props.setCounterValue(false)
         props.setDisabledCounterButton(true)
-        checkingValues()
+        checkingValuesForMax(Number(numberMax))
     }
 
     const onChangeHandlerStart = (event: ChangeEvent<HTMLInputElement>) => {
-        const number = event.currentTarget.value
-        number && props.setValueStartCounter(Number(number))
+        const numberStart = event.currentTarget.value
+        numberStart && props.setValueStartCounter(Number(numberStart))
         props.setDisabledSetterButton(false)
         props.setCounterValue(false)
         props.setDisabledCounterButton(true)
-        checkingValues()
+        checkingValuesForStart(Number(numberStart))
     }
 
     let onclickHandler = () => {
