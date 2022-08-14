@@ -87,7 +87,7 @@ function Setter(props: SetterPropsType) {
         props.setDisabledSetterButton(false)
         props.setCounterValue(false)
         props.setDisabledCounterButton(true)
-        checkingValuesForMax(Number(numberMax))
+        checkingValuesForMax(Number(numberMax))//ВАЖНО, здесь передается актуальное значение, которое еще не успело бы прийти через props
     }
 
     const onChangeHandlerStart = (event: ChangeEvent<HTMLInputElement>) => {
@@ -96,7 +96,7 @@ function Setter(props: SetterPropsType) {
         props.setDisabledSetterButton(false)
         props.setCounterValue(false)
         props.setDisabledCounterButton(true)
-        checkingValuesForStart(Number(numberStart))
+        checkingValuesForStart(Number(numberStart))//ВАЖНО, здесь передается актуальное значение, которое еще не успело бы прийти через props
     }
 
     let onclickHandler = () => {
