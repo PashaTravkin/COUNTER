@@ -45,3 +45,9 @@
     justify-content: center;
 }
 
+.red{
+    color: red;
+    background-color: #ff6363;
+    border-width: 2px;
+    border-color: red;
+}

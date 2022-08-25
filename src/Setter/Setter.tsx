@@ -117,10 +117,14 @@ function Setter(props: SetterPropsType) {
             <div className={s.counterWrapper}>
                 <div className={s.windowChangingNumber}>
                     <div className={s.changingNumber}>
-                        <span>max value: </span> <input type={'number'} onChange={onChangeHandlerMax}
-                                                        value={props.valueMaxCounter}/>
-                        <span>start value: </span> <input type={'number'} onChange={onChangeHandlerStart}
-                                                          value={props.valueStartCounter}/>
+                        <span>max value: </span> <input
+                        className={props.valueMaxCounter<=props.valueStartCounter||props.valueMaxCounter<0?s.red:''}
+                        type={'number'} onChange={onChangeHandlerMax}
+                        value={props.valueMaxCounter}/>
+                        <span>start value: </span> <input
+                        className={props.valueMaxCounter<=props.valueStartCounter||props.valueStartCounter<0?s.red:''}
+                        type={'number'} onChange={onChangeHandlerStart}
+                        value={props.valueStartCounter}/>
                     </div>
                 </div>
                 <div className={s.buttons}>
