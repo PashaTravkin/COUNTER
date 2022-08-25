@@ -1,5 +1,5 @@
 import s from './Setter.module.css';
-import {ChangeEvent, useEffect, useState} from "react";
+import {ChangeEvent, useEffect} from "react";
 import {Button} from "../Button/Button";
 
 type SetterPropsType = {
@@ -14,6 +14,8 @@ type SetterPropsType = {
     setCounterValue: (counterValue: boolean) => void
     setErrorTitle: (errorTitle: string) => void
     setDisabledCounterButton: (value: boolean) => void
+    setOrCount: boolean
+    setSetOrCount: (setOrCount: boolean) => void
 }
 
 function Setter(props: SetterPropsType) {
@@ -54,18 +56,19 @@ function Setter(props: SetterPropsType) {
         localStorage.setItem('setElementDisableButton', JSON.stringify(props.disabledSetterButton))
     }, [props.disabledSetterButton])
 
-    let ifForAllCheckingValue = ()=>{
+
+    let ifForAllCheckingValue = () => {
         props.setCounterValue(false)
         props.setErrorTitle('Incorrect value!')
         props.setDisabledSetterButton(true)
     }
 
-    let elseForAllCheckingValue =()=>{
+    let elseForAllCheckingValue = () => {
         props.setErrorTitle('Enter your value!')
         props.setDisabledSetterButton(false)
     }
 
-    let checkingValuesForMax = (numberMax:number) => {
+    let checkingValuesForMax = (numberMax: number) => {
         if (numberMax <= props.valueStartCounter || numberMax <= 0) {
             ifForAllCheckingValue()
         } else {
@@ -73,7 +76,7 @@ function Setter(props: SetterPropsType) {
         }
     }
 
-    let checkingValuesForStart = (numberStart:number) => {
+    let checkingValuesForStart = (numberStart: number) => {
         if (props.valueMaxCounter <= numberStart || numberStart <= 0) {
             ifForAllCheckingValue()
         } else {
@@ -106,6 +109,7 @@ function Setter(props: SetterPropsType) {
         props.setDisabledSetterButton(true)
         props.setCounterValue(true)
         props.setDisabledCounterButton(false)
+        props.setSetOrCount(!props.setOrCount)
     }
 
     return (
@@ -124,7 +128,8 @@ function Setter(props: SetterPropsType) {
                 </div>
             </div>
         </div>
-    );
+    )
 }
+
 
 export default Setter

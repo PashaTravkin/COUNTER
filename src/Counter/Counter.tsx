@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import s from './Counter.module.css';
 import {IncreaseReset} from "../IncreaseReset/IncreaseReset";
 
@@ -11,6 +11,8 @@ type CounterPropsType = {
     setCounterValue: (counterValue: boolean) => void
     errorTitle: string
     disabledCounterButton:boolean
+    setOrCount:boolean
+    setSetOrCount:(setOrCount:boolean)=>void
 }
 
 function Counter(props: CounterPropsType) {
@@ -19,13 +21,13 @@ function Counter(props: CounterPropsType) {
         let holdValue = localStorage.getItem('setElement')
         if (holdValue) {
             let newHoldValue = JSON.parse(holdValue)
-            props.setValue(newHoldValue)
+            props.setCounterValue(newHoldValue)
         }
     }, [])
 
     useEffect(() => {
-        localStorage.setItem('setElement', JSON.stringify(props.value))
-    }, [props.value])
+        localStorage.setItem('setElement', JSON.stringify(props.startValue))
+        }, [props.startValue])
 
     useEffect(() => {
         let holdValue = localStorage.getItem('setElementCounterValue')
@@ -55,7 +57,9 @@ function Counter(props: CounterPropsType) {
                                    setValue={props.setValue}
                                    valueMaxCounter={props.valueMaxCounter}
                                    startValue={props.startValue}
-                                   disabledCounterButton={props.disabledCounterButton}/>
+                                   disabledCounterButton={props.disabledCounterButton}
+                                   setOrCount={props.setOrCount}
+                                   setSetOrCount={props.setSetOrCount}/>
                 </div>
             </div>
         </div>
