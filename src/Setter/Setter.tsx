@@ -127,7 +127,7 @@ function Setter(props: SetterPropsType) {
                         value={props.valueStartCounter}/>
                     </div>
                 </div>
-                <div className={s.buttons}>
+                <div className={`${s.buttons}`}>
                     <Button disabled={props.disabledSetterButton} onClick={onclickHandler} title={'set'}/>
                 </div>
             </div>
